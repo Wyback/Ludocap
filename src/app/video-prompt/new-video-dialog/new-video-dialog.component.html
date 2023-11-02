@@ -1,0 +1,20 @@
+<h2 mat-dialog-title *ngIf="!isEdition">Ajouter une vidéo</h2>
+<h2 mat-dialog-title *ngIf="isEdition">Editez la vidéo</h2>
+<div class="add-item-container">
+  <mat-card>
+    <mat-dialog-content style="display: flex; flex-direction: column;">
+      <mat-form-field>
+        <mat-label>URL de la vidéo</mat-label>
+        <input matInput [formControl]="newItemUrlControl">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Texte à saisir</mat-label>
+        <input matInput [formControl]="newItemTitleControl">
+      </mat-form-field>
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button mat-raised-button color="primary" (click)="closeDialog()">Valider</button>
+      <button mat-raised-button color="primary" (click)="onNoClick()">Annuler</button>
+    </mat-dialog-actions>
+  </mat-card>
+</div>

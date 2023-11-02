@@ -1,0 +1,283 @@
+.list-container {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-image: url("../../assets/rose.jpg");
+}
+
+
+.mat-card-child {
+  width: 100%;
+}
+
+.mat-card-parent {
+  position: relative;
+  width:45%;
+}
+
+.arrow-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 3s ease-out;
+}
+
+.arrow-button {
+  width: 60px; /* Adjust as needed */
+  height: 60px; /* Adjust as needed */
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  position: relative; /* Add position relative */
+  z-index: 1;
+  transition: color 2s ease-out;
+}
+
+.arrow-button mat-icon {
+  height: 60px;
+  width: 60px;
+  font-size: 60px;
+}
+.arrow-button.left{
+  left:0;
+  position: absolute;
+}
+.arrow-button.right{
+  right: 0;
+  position: absolute;
+}
+  
+.list-item {
+  display: flex;
+  margin:5px;
+}
+
+.list-item mat-card-content {
+  flex-direction: row;
+  padding: 5%;
+}
+
+.list-item mat-card-actions {
+  display: flex;
+}
+.toggle-container {
+  margin-bottom: 1%;
+  display: flex;
+  flex-direction: column-reverse;
+  align-items: center;
+}
+
+.video-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.video-content img {
+  margin-right: 7%;
+}
+
+.infos{
+  width: 80%;
+}
+
+.infos-child{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.input {
+  width: 100%;
+  position: relative;
+}
+
+.input.mat-form-field-suffix {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.tutor-view {
+  position: absolute;
+  right: 0;
+  display: flex;
+  align-items: center;
+}
+
+.item-text-child {
+  font-size: 2em;
+  bottom: 10%;
+  display: flex;
+  font-family: 'DejaVu Serif', serif;
+  color: white;
+  flex-direction: column-reverse;
+  height: 35%;
+  justify-content: center;
+}
+
+mat-card-title{
+  display: flex;
+  align-items: center;
+  height: 100%;
+  font-family: 'DejaVu Serif', serif;
+  font-size: 2em;
+}
+
+mat-card-actions {
+  display: flex;
+  align-items: center;
+}
+
+.add-button {
+  display: flex;
+  justify-content: center;
+  margin: 10px auto;
+  color: #9b1755;
+}
+
+.child-view img {
+  width: 350px;
+  height: 300px;
+  object-fit: cover;
+}
+
+.child-view mat-form-field {
+  width: 100%;
+  max-width: 25em;
+}
+
+.list-item.child-view {
+  position: absolute;
+  width: 100%;
+  background:#9b1755;
+  box-shadow: none;
+
+}
+
+body {
+  background: rgba(229,186,206,255);;
+}
+.gradient-div {
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 50%;
+
+  display: flex;
+  justify-content: center;
+}
+
+.gradient-div.left {
+  left: 0;
+  width: 25%;
+  background: transparent;
+}
+
+.gradient-div.right {
+  right: 0;
+  width: 25%;
+  background: transparent;
+}
+
+.arrow-icon-left-color-transition {
+  color: transparent; /* Set your initial color */
+  transition: color 1s ease; /* Specify your transition properties */
+}
+.arrow-icon-right-color-transition {
+  color: transparent; /* Set your initial color */
+  transition: color 1s ease; /* Specify your transition properties */
+}
+
+
+.arrow-icon-left-color-transition.icon-left-hovered {
+  color: white; /* Set your final color */
+}
+.arrow-icon-right-color-transition.icon-right-hovered {
+  color: white; /* Set your final color */
+}
+
+.toggle.hidden {
+  display: none;
+}
+
+/* In your component's CSS file or using inline styles */
+.keyboard-backspace-button {
+  position: absolute;
+  left: 19%;
+  width: 60px !important; /* Adjust as needed */
+  height: 60px !important; /* Adjust as needed */
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  z-index: 1;
+  transition: color 2s ease-out;
+  color: white; 
+  margin: 1%;
+}
+
+.settings-button {
+  width: 60px !important; /* Adjust as needed */
+  height: 60px !important; /* Adjust as needed */
+  right: 35%;
+  cursor: pointer;
+  z-index: 1;
+  transition: color 2s ease-out;
+  color: white; 
+  margin: 1%;
+}
+
+.keyboard-backspace-button button {
+  background-color: transparent;
+  color: #fff; /* White color */
+  border: none;
+  cursor: pointer;
+}
+
+.keyboard-backspace-button button:hover {
+  transform: scale(1.1); /* Scale the icon on hover for a visual effect */
+}
+
+keyboard-backspace-icon {
+  height: 60px !important;
+  width: 60px !important;
+}
+
+keyboard-backspace-icon {
+  height: 60px !important;
+  width: 60px !important;
+}
+
+.arrow-left {
+  height: 120px !important;
+  width: 120px !important;
+}
+
+.arrow-right {
+  height: 120px !important;
+  width: 120px !important;
+}
+
+.carousel-control-left {
+  display: flex;
+  position: relative;
+  left: -10%;
+  top: 150%;
+  justify-content: flex-start;
+  color: white;
+  width: 10%;
+}
+.carousel-control-right {
+  display: flex;
+  position: absolute;
+  right: -10%;
+  top: 150%;
+  width: 10%;
+  justify-content: flex-end;
+  color: white;
+}

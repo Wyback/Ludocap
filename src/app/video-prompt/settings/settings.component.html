@@ -1,0 +1,53 @@
+<!-- settings.component.html -->
+<div class="settings-container">
+  <h2 class="settings-title">Settings</h2>
+  <div class="settings">
+    <div class="setting">
+      <mat-slide-toggle
+        [(ngModel)]="!isTutor" (change)="toggleIsTutor()"
+      >
+        Enable Child View
+      </mat-slide-toggle>
+    </div>
+  
+    <div class="setting">
+      <mat-slide-toggle [(ngModel)]="isToSubmit" (toggleChange)="toggleIsToSubmit()">
+        Enable Submit Button
+      </mat-slide-toggle>
+    </div>
+  
+    <div class="setting">
+      <mat-slide-toggle
+        [(ngModel)]="isRedirectActivated" (change)="toggleIsRedirectActivated()"
+      >
+        Activer le retour à la vue parent
+      </mat-slide-toggle>
+    </div>
+  
+    <div class="setting">
+      <input
+        type="file"
+        (change)="importFile($event)"
+        accept=".txt"
+        class="file-input"
+        id="fileInput"
+      />
+      <label
+        for="fileInput"
+        class="file-input-label"
+      >
+        Import File
+      </label>
+      <span class="file-name">{{ selectedFileName }}</span>
+    </div>
+  </div>
+
+  <button
+    mat-button
+    (click)="sendDataToParent()"
+    color="primary"
+    class="save-button"
+  >
+    Save and Close
+  </button>
+</div>

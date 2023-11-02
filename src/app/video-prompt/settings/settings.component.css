@@ -1,0 +1,55 @@
+/* settings.component.css */
+.settings-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Your-Font-Family', sans-serif; /* Replace 'Your-Font-Family' with your desired font */
+    background-color: #f0f0f0; /* Set your desired background color */
+    padding: 20px;
+  }
+  
+  .settings-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #333; /* Set your desired title color */
+  }
+  
+  .setting {
+    margin: 10px 0;
+  }
+  
+  .file-input {
+    display: none; /* Hide the original file input */
+  }
+
+  .file-name {
+    position: relative;
+    left: 10%;
+  }
+
+  .file-input-label {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: 	#f3b0cf; /* Set your desired background color */
+    color: #fff; /* Set your desired text color */
+    border: 1px solid 	#f3b0cf; /* Set your desired border color */
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .file-input-label:hover {
+    background-color: #c81e6d; /* Set a darker color for hover effect */
+  }
+  
+  .file-input-label:active {
+    background-color: #c81e6d; /* Set a darker color for active (click) effect */
+  }
+  
+  .save-button {
+    margin-top: 20px;
+  }
+  
+  .settings {
+    display: fex;
+  }

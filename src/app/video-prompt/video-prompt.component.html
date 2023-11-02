@@ -1,0 +1,71 @@
+<div class="list-container">
+  <button mat-mini-fab *ngIf="!isTutor" type="button" class="keyboard-backspace-button" (click)="redirectToParent()">
+    <mat-icon class="keyboard-backspace-icon">keyboard_backspace</mat-icon>
+  </button>
+  <button mat-fab type="button" class="settings-button" (click)="openSettingsDialog()">
+    <mat-icon>settings</mat-icon>
+  </button>
+  <div *ngIf="isTutor" class="mat-card-parent">
+    <mat-card class="list-item" *ngFor="let item of items; let i = index"
+      [@cardHover]="i === hoveredCardIndex ? 'hovered' : 'notHovered'"
+      (mouseenter)="onMouseEnter($event,i)"
+      (mouseleave)="onMouseLeave()">
+      <mat-card-content class="video-content" (click)="redirectChildView(i)">
+        <img mat-card-lg-image [src]="getVideoThumbnailUrl(item.url)" alt="Video thumbnail">
+        <div class="infos">
+          <mat-card-title class="item-text">{{ item.title }}</mat-card-title>
+        </div>
+      </mat-card-content>
+      <mat-card-actions style="
+        position: absolute;
+        right: 0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100%;
+      ">
+        <button type="button" mat-icon-button color="basic" (click)="editItem(items[currentIndex])">
+          <mat-icon>edit</mat-icon> <!-- Add an Edit button here -->
+        </button>
+        <button type="button" mat-icon-button color="basic" (click)="removeItem(items[currentIndex])">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+    <button mat-icon-button class="add-button" color="basic" *ngIf="isTutor" (click)="addItem()">
+      <mat-icon>add</mat-icon>
+    </button>
+  </div>
+  <div *ngIf="!isTutor" style="display: -webkit-inline-box; text-align: center; width: 50%;position: absolute; top: 30%;">
+    <div class="mat-card-child">
+      <c-carousel [interval]="0" [activeIndex]="currentIndex" style="display: grid;">
+        <c-carousel-inner>
+          <c-carousel-item *ngFor="let item of items">
+            <mat-card class="list-item child-view" *ngIf="currentIndex >= 0">
+              <mat-card-content class="video-content">
+                <img mat-card-lg-image [src]="getVideoThumbnailUrl(item.url)" alt="Video thumbnail">
+                <div class="infos infos-child">
+                  <div class="item-text-child">{{ item.title }}</div>
+                  <mat-form-field class="input" [@shake]="animationState">
+                    <input matInput [formControl]="newItemInputControl" placeholder="Saisis le titre de la vidéo">
+                  </mat-form-field>
+                </div>
+                <mat-card-actions *ngIf="isToSubmit">
+                  <button mat-fab (click)="submitInput(item.url, item.title, newItemInputControl.value)">
+                    <mat-icon>done</mat-icon>
+                  </button>
+                </mat-card-actions>
+              </mat-card-content>
+            </mat-card>
+          </c-carousel-item>
+        </c-carousel-inner>
+        <c-carousel-control [routerLink] caption="Previous" direction="prev" (click)="previousItem()" *ngIf="currentIndex > 0" class="carousel-control-left">
+          <mat-icon class="arrow-left">keyboard_arrow_left</mat-icon>
+        </c-carousel-control>
+        <c-carousel-control [routerLink] caption="Next" direction="next" (click)="nextItem()" *ngIf="items.length > 1 && currentIndex < items.length - 1" class="carousel-control-right">
+          <mat-icon class="arrow-right">keyboard_arrow_right</mat-icon>
+        </c-carousel-control>
+      </c-carousel>
+    </div>
+  </div>
+</div>
