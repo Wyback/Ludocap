@@ -27,8 +27,8 @@ import { SettingsComponent } from './settings/settings.component';
       ]))),
     ],),
     trigger('cardHover', [
-      state('notHovered', style({ transform: 'scale(1)', backgroundColor: '#ed78af', color: '#9b1755' })),
-      state('hovered', style({ transform: 'scale(1.1)', backgroundColor: '#c81e6d', color: '#f9d2e4', zIndex: 1 })),
+      state('notHovered', style({ transform: 'scale(1)', backgroundColor: '#c9a0dc', color: 'white' })),
+      state('hovered', style({ transform: 'scale(1.1)', backgroundColor: '#ae8abf', color: 'white', zIndex: 1 })),
       transition('* => hovered', animate('300ms ease-in')),
       transition('hovered => notHovered', animate('300ms ease-out')),
     ]),    

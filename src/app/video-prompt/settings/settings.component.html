@@ -6,13 +6,13 @@
       <mat-slide-toggle
         [(ngModel)]="!isTutor" (change)="toggleIsTutor()"
       >
-        Enable Child View
+        Activer la vue enfant
       </mat-slide-toggle>
     </div>
   
     <div class="setting">
       <mat-slide-toggle [(ngModel)]="isToSubmit" (toggleChange)="toggleIsToSubmit()">
-        Enable Submit Button
+        Activer la confirmation de saisie
       </mat-slide-toggle>
     </div>
   
@@ -36,9 +36,15 @@
         for="fileInput"
         class="file-input-label"
       >
-        Import File
+        Importer une sauvegarde
       </label>
       <span class="file-name">{{ selectedFileName }}</span>
+    </div>
+    <div class="setting">
+      <!-- Add a new button for exporting to a file -->
+      <button mat-button (click)="exportToFile()" color="primary" class="export-button">
+        Créer une sauvegarde
+      </button>
     </div>
   </div>
 

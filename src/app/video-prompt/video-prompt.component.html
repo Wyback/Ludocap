@@ -2,7 +2,7 @@
   <button mat-mini-fab *ngIf="!isTutor" type="button" class="keyboard-backspace-button" (click)="redirectToParent()">
     <mat-icon class="keyboard-backspace-icon">keyboard_backspace</mat-icon>
   </button>
-  <button mat-fab type="button" class="settings-button" (click)="openSettingsDialog()">
+  <button mat-fab style="background-color: #c9a0dc" type="button" class="settings-button" (click)="openSettingsDialog()">
     <mat-icon>settings</mat-icon>
   </button>
   <div *ngIf="isTutor" class="mat-card-parent">
@@ -24,10 +24,10 @@
         justify-content: space-between;
         height: 100%;
       ">
-        <button type="button" mat-icon-button color="basic" (click)="editItem(items[currentIndex])">
+        <button type="button" mat-icon-button color="basic" (click)="editItem(item)">
           <mat-icon>edit</mat-icon> <!-- Add an Edit button here -->
         </button>
-        <button type="button" mat-icon-button color="basic" (click)="removeItem(items[currentIndex])">
+        <button type="button" mat-icon-button color="basic" (click)="removeItem(item)">
           <mat-icon>delete</mat-icon>
         </button>
       </mat-card-actions>
@@ -59,11 +59,13 @@
             </mat-card>
           </c-carousel-item>
         </c-carousel-inner>
-        <c-carousel-control [routerLink] caption="Previous" direction="prev" (click)="previousItem()" *ngIf="currentIndex > 0" class="carousel-control-left">
-          <mat-icon class="arrow-left">keyboard_arrow_left</mat-icon>
+        <!-- Position controls on left and right -->
+        <c-carousel-control [routerLink] caption="Previous" direction="prev" (click)="previousItem()" *ngIf="currentIndex > 0">
+          <mat-icon class="arrow-button arrow-buttons left">keyboard_arrow_left</mat-icon>
         </c-carousel-control>
-        <c-carousel-control [routerLink] caption="Next" direction="next" (click)="nextItem()" *ngIf="items.length > 1 && currentIndex < items.length - 1" class="carousel-control-right">
-          <mat-icon class="arrow-right">keyboard_arrow_right</mat-icon>
+
+        <c-carousel-control [routerLink] caption="Next" direction="next" (click)="nextItem()" *ngIf="items.length > 1 && currentIndex < items.length - 1">
+          <mat-icon class="arrow-button arrow-buttons right">keyboard_arrow_right</mat-icon>
         </c-carousel-control>
       </c-carousel>
     </div>

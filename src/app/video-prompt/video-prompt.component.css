@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  background-image: url("../../assets/rose.jpg");
+  background-color: '#add8e6';
 }
 
 
@@ -26,7 +26,7 @@
 .arrow-button {
   width: 60px; /* Adjust as needed */
   height: 60px; /* Adjust as needed */
-  background-color: transparent;
+  color: white; /* Set the background color to white */
   border: none;
   outline: none;
   cursor: pointer;
@@ -40,14 +40,17 @@
   width: 60px;
   font-size: 60px;
 }
-.arrow-button.left{
-  left:0;
+
+.arrow-button.left {
+  left: 0;
   position: absolute;
 }
-.arrow-button.right{
-  right: 0;
+
+.arrow-button.right {
+  right: -1rem;
   position: absolute;
 }
+
   
 .list-item {
   display: flex;
@@ -112,9 +115,9 @@
   font-size: 2em;
   bottom: 10%;
   display: flex;
-  font-family: 'DejaVu Serif', serif;
   color: white;
   flex-direction: column-reverse;
+  font-family: 'SassoonPrimary', sans-serif;
   height: 35%;
   justify-content: center;
 }
@@ -122,8 +125,8 @@
 mat-card-title{
   display: flex;
   align-items: center;
+  font-family: 'AndikaRegular', sans-serif;
   height: 100%;
-  font-family: 'DejaVu Serif', serif;
   font-size: 2em;
 }
 
@@ -153,7 +156,7 @@ mat-card-actions {
 .list-item.child-view {
   position: absolute;
   width: 100%;
-  background:#9b1755;
+  background:#ae8abf;
   box-shadow: none;
 
 }
@@ -263,21 +266,12 @@ keyboard-backspace-icon {
   width: 120px !important;
 }
 
-.carousel-control-left {
+.carousel-control-prev{
   display: flex;
-  position: relative;
-  left: -10%;
-  top: 150%;
-  justify-content: flex-start;
-  color: white;
-  width: 10%;
+  top: 50%;
 }
-.carousel-control-right {
+
+.carousel-control-next{
   display: flex;
-  position: absolute;
-  right: -10%;
-  top: 150%;
-  width: 10%;
-  justify-content: flex-end;
-  color: white;
+  top: 50%;
 }

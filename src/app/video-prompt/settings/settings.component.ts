@@ -31,6 +31,27 @@ export class SettingsComponent implements OnInit {
     this.sendDataToParent();
   }
 
+  exportToFile() {
+    const currentDate = new Date();
+    const formattedDate = currentDate.toLocaleDateString('fr-FR', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric',
+    });
+  
+    const fileName = `export_${formattedDate}.txt`;
+  
+    const content = this.items.map(video => `${video.url} "${video.title}"`).join('\n');
+    const blob = new Blob([content], { type: 'text/plain' });
+  
+    const a = document.createElement('a');
+    a.href = URL.createObjectURL(blob);
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+  }
+
   importFile(event: Event) {
     const inputElement = event.target as HTMLInputElement;
     const file = inputElement.files?.[0];
