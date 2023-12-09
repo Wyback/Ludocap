@@ -102,11 +102,16 @@ export class VideoPromptComponent {
   getVideoThumbnailUrl(videoUrl?: string | null): string {
     const videoIdPattern = /(?:\?v=|&v=|youtu\.be\/)(.*?)(?:\?|&|$)/;
     const match = videoUrl?.match(videoIdPattern);
+  
     if (match && match[1]) {
-      return `https://img.youtube.com/vi/${match[1]}/0.jpg`;
+      // Remove anything after '&' character
+      const videoId = match[1].split('&')[0];
+      return `https://img.youtube.com/vi/${videoId}/0.jpg`;
     }
+  
     return '';
   }
+  
 
   removeItem(item: Video) {
     const index = this.items.indexOf(item);

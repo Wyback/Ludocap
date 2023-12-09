@@ -36,7 +36,7 @@
       <mat-icon>add</mat-icon>
     </button>
   </div>
-  <div *ngIf="!isTutor" style="display: -webkit-inline-box; text-align: center; width: 50%;position: absolute; top: 30%;">
+  <div *ngIf="!isTutor" style="display: -webkit-inline-box; text-align: center; width: 65%;position: absolute; top: 30%;">
     <div class="mat-card-child">
       <c-carousel [interval]="0" [activeIndex]="currentIndex" style="display: grid;">
         <c-carousel-inner>
@@ -47,7 +47,7 @@
                 <div class="infos infos-child">
                   <div class="item-text-child">{{ item.title }}</div>
                   <mat-form-field class="input" [@shake]="animationState">
-                    <input matInput [formControl]="newItemInputControl" placeholder="Saisis le titre de la vidéo">
+                    <input matInput style="font-size: 30px;" [formControl]="newItemInputControl" placeholder="Saisis le titre de la vidéo">
                   </mat-form-field>
                 </div>
                 <mat-card-actions *ngIf="isToSubmit">

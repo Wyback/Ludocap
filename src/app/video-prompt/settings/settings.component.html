@@ -1,6 +1,6 @@
 <!-- settings.component.html -->
 <div class="settings-container">
-  <h2 class="settings-title">Settings</h2>
+  <h2 class="settings-title">Options</h2>
   <div class="settings">
     <div class="setting">
       <mat-slide-toggle
@@ -42,18 +42,22 @@
     </div>
     <div class="setting">
       <!-- Add a new button for exporting to a file -->
-      <button mat-button (click)="exportToFile()" color="primary" class="export-button">
+      <button 
+        mat-stroked-button color="primary" 
+        (click)="exportToFile()" 
+        class="export-button"
+      >
         Créer une sauvegarde
       </button>
     </div>
   </div>
 
   <button
-    mat-button
+    mat-raised-button
     (click)="sendDataToParent()"
     color="primary"
     class="save-button"
   >
-    Save and Close
+    Enregistrer les modifications
   </button>
 </div>
