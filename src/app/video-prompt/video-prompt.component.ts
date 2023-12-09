@@ -111,6 +111,10 @@ export class VideoPromptComponent {
   
     return '';
   }
+
+  resetInputChild(){
+    this.newItemInputControl.setValue("");
+  }
   
 
   removeItem(item: Video) {
@@ -152,6 +156,7 @@ export class VideoPromptComponent {
         this.cardState = 'in'; // Slide in the new card
       }, 700);
     }
+    this.resetInputChild();
   }
 
   setControlsValue(){
@@ -167,6 +172,7 @@ export class VideoPromptComponent {
         this.setControlsValue();
       }, 700);
     }
+    this.resetInputChild();
   }
 
   redirectChildView(index: number) {
@@ -304,6 +310,7 @@ export class VideoPromptComponent {
 
   redirectToParent() {
     this.isTutor = !this.isTutor;
+    this.resetInputChild();
   }
 }
 
