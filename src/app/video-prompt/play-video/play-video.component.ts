@@ -16,6 +16,7 @@ export class PlayVideoComponent implements OnInit {
 
   ngOnInit(): void {
     const videoId = this.data.videoUrl.split('v=')[1];
+    console.log(this.data.videoUrl)
     this.videoUrl = `http://www.youtube.com/embed/${videoId}?autoplay=1`
     this.urlSafe = this.sanitizer.bypassSecurityTrustResourceUrl(this.videoUrl);
   }

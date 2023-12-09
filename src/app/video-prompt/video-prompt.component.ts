@@ -68,11 +68,13 @@ export class VideoPromptComponent {
 
     this.inputObservable.subscribe((inputValue: string) => {
       if(!this.isToSubmit){
-        if (this.items.some(item => item.title === inputValue)) {
-          this.isValidInput = !this.isValidInput;
-          this.submitInput(this.newItemUrlControl.value, this.newItemTitleControl.value, this.newItemInputControl.value);
-        } else {
-          this.isValidInput = false;
+        for(let item of this.items){
+          if(item.title === inputValue){
+            this.isValidInput = !this.isValidInput;
+            this.submitInput(item.url, item.title, item.input);
+          } else {
+            this.isValidInput = false;
+          }
         }
       }
     });
@@ -173,7 +175,6 @@ export class VideoPromptComponent {
   
 
   submitInput(url: string | null, title: string | null, input: string | null) {
-    console.log(url, title, input)
     if(title == input) this.isValidInput = true;
     if (this.isValidInput) {
       const item = this.items.find(item => item.url === url && item.title === title);
