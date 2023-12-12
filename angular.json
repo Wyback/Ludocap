@@ -71,10 +71,10 @@
           "builder": "@angular-devkit/build-angular:dev-server",
           "configurations": {
             "production": {
-              "browserTarget": "ludocap:build:production"
+              "buildTarget": "ludocap:build:production"
             },
             "development": {
-              "browserTarget": "ludocap:build:development"
+              "buildTarget": "ludocap:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -82,7 +82,7 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "ludocap:build"
+            "buildTarget": "ludocap:build"
           }
         },
         "test": {

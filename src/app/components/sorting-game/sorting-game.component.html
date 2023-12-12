@@ -1,8 +1,17 @@
-<div cdkDropList class="example-list" (cdkDropListDropped)="drop($event)">
-  @for (movie of movies; track movie) {
-    <div class="example-box" cdkDrag>
-      {{movie.title}}
-      <img *cdkDragPreview [src]="movie.poster" [alt]="movie.title">
-    </div>
-  }
+<div class="container">
+  <!-- List of items on the left -->
+  <div class="list-container">
+    @for (item of arrayItems; track $index) {
+        <div cdkDropList cdkDrag class="list" (cdkDropListDropped)="drop($event)">
+          {{ item }}
+        </div>
+      }
+  </div>
+
+  <!-- 4 by 4 grid centered on the page -->
+  <div class="grid-container">
+    @for (cell of gridCells; track $index) {
+      <div cdkDropList class="grid" (cdkDropListDropped)="drop($event)">{{ cell }}</div>
+    }
+  </div>
 </div>

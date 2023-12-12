@@ -1,14 +1,15 @@
-import {Component} from '@angular/core';
+import {Component, Input} from '@angular/core';
 import {
-  CdkDragDrop,
-  CdkDropList,
-  CdkDragPreview,
   CdkDrag,
+  CdkDragDrop,
+  CdkDragPreview,
+  CdkDropList,
   moveItemInArray,
+  transferArrayItem,
 } from '@angular/cdk/drag-drop';
 
 /**
- * @title Drag&Drop custom preview
+ * @title Drag&Drop disabled sorting
  */
 @Component({
   selector: 'app-sorting-game',
@@ -17,54 +18,52 @@ import {
   standalone: true,
   imports: [CdkDropList, CdkDrag, CdkDragPreview],
 })
-export class CdkDragDropCustomPreviewExample {
-  // tslint:disable:max-line-length
-  movies = [
-    {
-      title: 'Episode I - The Phantom Menace',
-      poster: 'https://upload.wikimedia.org/wikipedia/en/4/40/Star_Wars_Phantom_Menace_poster.jpg',
-    },
-    {
-      title: 'Episode II - Attack of the Clones',
-      poster:
-        'https://upload.wikimedia.org/wikipedia/en/3/32/Star_Wars_-_Episode_II_Attack_of_the_Clones_%28movie_poster%29.jpg',
-    },
-    {
-      title: 'Episode III - Revenge of the Sith',
-      poster:
-        'https://upload.wikimedia.org/wikipedia/en/9/93/Star_Wars_Episode_III_Revenge_of_the_Sith_poster.jpg',
-    },
-    {
-      title: 'Episode IV - A New Hope',
-      poster: 'https://upload.wikimedia.org/wikipedia/en/8/87/StarWarsMoviePoster1977.jpg',
-    },
-    {
-      title: 'Episode V - The Empire Strikes Back',
-      poster:
-        'https://upload.wikimedia.org/wikipedia/en/3/3f/The_Empire_Strikes_Back_%281980_film%29.jpg',
-    },
-    {
-      title: 'Episode VI - Return of the Jedi',
-      poster: 'https://upload.wikimedia.org/wikipedia/en/b/b2/ReturnOfTheJediPoster1983.jpg',
-    },
-    {
-      title: 'Episode VII - The Force Awakens',
-      poster:
-        'https://upload.wikimedia.org/wikipedia/en/a/a2/Star_Wars_The_Force_Awakens_Theatrical_Poster.jpg',
-    },
-    {
-      title: 'Episode VIII - The Last Jedi',
-      poster: 'https://upload.wikimedia.org/wikipedia/en/7/7f/Star_Wars_The_Last_Jedi.jpg',
-    },
-    {
-      title: 'Episode IX – The Rise of Skywalker',
-      poster:
-        'https://upload.wikimedia.org/wikipedia/en/a/af/Star_Wars_The_Rise_of_Skywalker_poster.jpg',
-    },
-  ];
-  // tslint:enable:max-line-length
 
-  drop(event: CdkDragDrop<{title: string; poster: string}[]>) {
-    moveItemInArray(this.movies, event.previousIndex, event.currentIndex);
+export class SortingGameComponent {
+  arrayItems = ['Item 1', 'Item 2', 'Item 3', 'Item 4'];
+  gridCells = Array.from({ length: 16 }, (_, index) => `Cell ${index + 1}`);
+
+  drop(event: CdkDragDrop<string[]>): void {
+    const item = event.item.data;
+    console.log(event.previousContainer.data)
+    console.log(item)
+    // Calculate the center of the drop container
+    const dropContainerRect = event.container.element.nativeElement.getBoundingClientRect();
+    const center = {
+      x: dropContainerRect.left + dropContainerRect.width / 2,
+      y: dropContainerRect.top + dropContainerRect.height / 2,
+    };
+
+    // Calculate the distance between the released position and the center
+    const distance = Math.sqrt(
+      Math.pow(event.distance.x, 2) +
+      Math.pow(event.distance.y, 2)
+    );
+
+    // Check if the released position is close to the center
+    const distanceThreshold = 20; // Adjust as needed
+
+    // If the released position is close, snap to the center
+    if (distance < distanceThreshold) {
+      console.log("over")
+      event.item._dragRef.reset();
+      transferArrayItem(
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    } else {
+      if (event.container === event.previousContainer) {
+        moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
+      } else {
+        transferArrayItem(
+          event.previousContainer.data,
+          event.container.data,
+          event.previousIndex,
+          event.currentIndex
+        );
+      }
+    }
   }
 }

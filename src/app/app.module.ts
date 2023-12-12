@@ -18,7 +18,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { SettingsComponent } from './components/video-list/settings/settings.component';
 import { HeaderComponent } from './components/header/header.component';
 import { CarouselModule } from '@coreui/angular';
-import { SortingGameComponent } from './components/sorting-game/sorting-game.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 @NgModule({
   declarations: [	
@@ -28,7 +27,6 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     PlayVideoComponent,
     SettingsComponent,
     HeaderComponent,
-    SortingGameComponent
   ],
   imports: [
     CarouselModule,
