@@ -1,0 +1,70 @@
+:host {
+    display: inline-block;
+    margin: 15px;
+    width: 100%;
+}
+.keyboard-backspace-button {
+    width: 60px !important;
+    height: 60px !important;
+    background-color: transparent;
+    margin-left: 1%;
+    position: absolute;
+    background-color: #3399cc;
+  }
+  
+  .settings-button {
+    width: 60px !important;
+    height: 60px !important;
+    transition: color 2s ease-out;
+    margin-left: 25%;
+  }
+  
+  .keyboard-backspace-button button {
+    background-color: transparent;
+    color: antiquewhite;
+    border: none;
+    cursor: pointer;
+  }
+  
+  .keyboard-backspace-button button:hover {
+    transform: scale(1.1); /* Scale the icon on hover for a visual effect */
+  }
+  
+  keyboard-backspace-icon {
+    height: 60px !important;
+    width: 60px !important;
+  }
+  
+  keyboard-backspace-icon {
+    height: 60px !important;
+    width: 60px !important;
+  }
+
+
+  @media (min-width: 2560px) {
+    
+  }
+  
+  @media (min-width: 1440px) and (max-width: 2559px){
+    .settings-button {
+        margin-left: 16%;
+      }
+  }
+  
+  @media (min-width: 1024px) and (max-width: 1439px) {
+    .settings-button {
+        width: 60px !important;
+        height: 60px !important;
+        transition: color 2s ease-out;
+        margin-left: 8%;
+      }
+  }
+  
+  @media (max-width: 1023px) {
+    .settings-button {
+        width: 60px !important;
+        height: 60px !important;
+        transition: color 2s ease-out;
+        margin-left: 3%;
+      }
+  }

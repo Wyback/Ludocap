@@ -1,6 +1,6 @@
 import { Component, HostListener, OnInit, Renderer2 } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
-import { Video } from '../Models/video';
+import { Video } from '../../Models/video';
 import { PlayVideoComponent } from './play-video/play-video.component';
 import { FormControl } from '@angular/forms';
 import { NewVideoDialogComponent } from './new-video-dialog/new-video-dialog.component';
@@ -11,55 +11,38 @@ import { SettingsComponent } from './settings/settings.component';
 
 @Component({
   selector: 'app-video-prompt',
-  templateUrl: './video-prompt.component.html',
-  styleUrls: ['./video-prompt.component.css'],
+  templateUrl: './video-list.component.html',
+  styleUrls: ['./video-list.component.css'],
   animations: [
-    trigger('shake', [
-      state('start', style({ transform: 'translateX(0)' })),
-      state('end', style({ transform: 'translateX(0)' })),
-      transition('start => end', animate('700ms', keyframes([
-        style({ transform: 'translateX(0)', offset: 0 }),
-        style({ transform: 'translateX(-10px)', offset: 0.2 }),
-        style({ transform: 'translateX(10px)', offset: 0.4 }),
-        style({ transform: 'translateX(-10px)', offset: 0.6 }),
-        style({ transform: 'translateX(10px)', offset: 0.8 }),
-        style({ transform: 'translateX(0)', offset: 1 }),
-      ]))),
-    ],),
     trigger('cardHover', [
-      state('notHovered', style({ transform: 'scale(1)', backgroundColor: '#c9a0dc', color: 'white' })),
-      state('hovered', style({ transform: 'scale(1.1)', backgroundColor: '#ae8abf', color: 'white', zIndex: 1 })),
+      state('notHovered', style({ transform: 'scale(1)', backgroundColor: '#c9a0dc', color: 'antiquewhite' })),
+      state('hovered', style({ transform: 'scale(1.1)', backgroundColor: '#ae8abf', color: 'antiquewhite', zIndex: 1 })),
       transition('* => hovered', animate('300ms ease-in')),
       transition('hovered => notHovered', animate('300ms ease-out')),
     ]),    
   ],
 })
-export class VideoPromptComponent {
-
+export class VideoListComponent implements OnInit {
   items: Video[] = [];
-  newItemUrl: string = '';
-  newItemTitle: string = '';
-  newItemInput: string = '';
-  showForm: boolean = false;
-  isTutor: boolean = true;
-  isRedirectActivated: boolean = true;
-  currentIndex: number = 0;
-  animationState: string = 'start';
-  newItemUrlControl = new FormControl('');
-  newItemTitleControl = new FormControl('');
-  newItemInputControl = new FormControl('');
+  formControls = {
+    newItemUrl: new FormControl(''),
+    newItemTitle: new FormControl(''),
+    newItemInput: new FormControl(''),
+  };
+  showForm = false;
+  isTutor = true;
+  currentIndex = 0;
   isIconLeftHovered = false;
   isIconRightHovered = false;
   cardState = 'in';
-  showToggle: boolean = false;
-  isToSubmit: boolean = false;
-  isValidInput: boolean = false;
+  showToggle = false;
+  isToSubmit = false;
+  isValidInput = false;
   hoveredCardIndex: number | null = null;
-
   inputObservable: Observable<string>;
 
-  constructor(private dialog: MatDialog, private renderer: Renderer2) { 
-    this.inputObservable = this.newItemInputControl.valueChanges.pipe(
+  constructor(private dialog: MatDialog) {
+    this.inputObservable = this.formControls.newItemInput.valueChanges.pipe(
       filter(value => value !== null), // Filter out null values
       map(value => value || ''), // Map null values to an empty string
       debounceTime(300), // Adjust the debounce time as needed
@@ -80,31 +63,13 @@ export class VideoPromptComponent {
     });
   }
 
-  onMouseOver(direction: string, isHovered: boolean) {
-    if (direction === 'left') {
-      this.animationState = 'left';
-      this.isIconLeftHovered = isHovered;
-    } else if (direction === 'right') {
-      this.animationState = 'right';
-      this.isIconRightHovered = isHovered;
-    }
-  }
-
-  onMouseOut(direction: string, isHovered: boolean) {
-    this.animationState = '';
-    if (direction === 'left') {
-      this.isIconLeftHovered = isHovered;
-    } else if (direction === 'right') {
-      this.isIconRightHovered = isHovered;
-    }
-  }
+  ngOnInit() {}
 
   getVideoThumbnailUrl(videoUrl?: string | null): string {
     const videoIdPattern = /(?:\?v=|&v=|youtu\.be\/)(.*?)(?:\?|&|$)/;
     const match = videoUrl?.match(videoIdPattern);
   
     if (match && match[1]) {
-      // Remove anything after '&' character
       const videoId = match[1].split('&')[0];
       return `https://img.youtube.com/vi/${videoId}/0.jpg`;
     }
@@ -112,8 +77,8 @@ export class VideoPromptComponent {
     return '';
   }
 
-  resetInputChild(){
-    this.newItemInputControl.setValue("");
+  handleResetInput(isResetInput: boolean){
+    if(isResetInput) this.formControls.newItemInput.setValue("");
   }
   
 
@@ -125,22 +90,22 @@ export class VideoPromptComponent {
   }
 
   addItem() {
-    this.showForm =!this.showForm; // set showForm to true when add button is clicked
+    this.showForm =!this.showForm;
     const dialogRef = this.dialog.open(NewVideoDialogComponent, {
       width: '500px',
       data: {
-        url: this.newItemUrlControl.value,
-        title: this.newItemTitleControl.value,
-        input: this.newItemInputControl.value
+        url: this.formControls.newItemUrl.value,
+        title: this.formControls.newItemTitle.value,
+        input: this.formControls.newItemInput.value
       }
     });
 
     dialogRef.afterClosed().subscribe(item => {
       if (item) {
         this.items.push(item);
-        this.newItemUrlControl.setValue(item.url);
-        this.newItemTitleControl.setValue(item.title);
-        this.newItemInputControl.setValue(item.input);
+        this.formControls.newItemUrl.setValue(item.url);
+        this.formControls.newItemTitle.setValue(item.title);
+        this.formControls.newItemInput.setValue(item.input);
       }
       this.showForm =!this.showForm
     });
@@ -150,19 +115,14 @@ export class VideoPromptComponent {
     if (this.currentIndex < this.items.length - 1) {
       this.currentIndex++;
       this.setControlsValue();
-      this.cardState = 'out'; // Slide out the current card
-      setTimeout(() => {
-        this.animationState = 'start'; // Reset the animation state after a short delay
-        this.cardState = 'in'; // Slide in the new card
-      }, 700);
     }
-    this.resetInputChild();
+    this.handleResetInput(true);
   }
 
   setControlsValue(){
-    this.newItemUrlControl.setValue(this.items[this.currentIndex].url);
-    this.newItemTitleControl.setValue(this.items[this.currentIndex].title);
-    this.newItemInputControl.setValue(this.items[this.currentIndex].input);
+    this.formControls.newItemUrl.setValue(this.items[this.currentIndex].url);
+    this.formControls.newItemTitle.setValue(this.items[this.currentIndex].title);
+    this.formControls.newItemInput.setValue(this.items[this.currentIndex].input);
   }
 
   previousItem() {
@@ -172,7 +132,7 @@ export class VideoPromptComponent {
         this.setControlsValue();
       }, 700);
     }
-    this.resetInputChild();
+    this.handleResetInput(true);
   }
 
   redirectChildView(index: number) {
@@ -194,14 +154,10 @@ export class VideoPromptComponent {
           item.input = input;
           this.currentIndex++;
         } else {
-          this.animationState = 'end'; // Trigger the animation
           setTimeout(() => {
-            this.animationState = 'start'; // Reset the animation state after a short delay
           }, 700);
         }
       }
-  
-      // Open the PlayVideoComponent or handle errors here
       const dialogRef = this.dialog.open(PlayVideoComponent, {
         width: '70%',
         height: '70%',
@@ -241,31 +197,30 @@ export class VideoPromptComponent {
         videos.push({ url, title, input: '' });
       }
     }
-  
-    // Add the parsed videos to your items array
     this.items = videos;
   }
 
-  openSettingsDialog() {
-    const dialogRef = this.dialog.open(SettingsComponent, {
-      width: '500px',
-      data: {
-        showToggle: this.showToggle,
-        isTutor: this.isTutor,
-        isToSubmit: this.isToSubmit,
-        items: this.items,
-      },
-    });
-
-    dialogRef.afterClosed().subscribe((result) => {
-      if (result) {
-        // Update your component properties based on the result if needed
-        this.showToggle = result.showToggle;
-        this.isTutor = result.isTutor;
-        this.isToSubmit = result.isToSubmit;
-        this.items = result.items;
-      }
-    });
+  openSettingsDialog(isToOpen: boolean) {
+    if(isToOpen) {
+      const dialogRef = this.dialog.open(SettingsComponent, {
+        width: '500px',
+        data: {
+          showToggle: this.showToggle,
+          isTutor: this.isTutor,
+          isToSubmit: this.isToSubmit,
+          items: this.items,
+        },
+      });
+  
+      dialogRef.afterClosed().subscribe((result) => {
+        if (result) {
+          this.showToggle = result.showToggle;
+          this.isTutor = result.isTutor;
+          this.isToSubmit = result.isToSubmit;
+          this.items = result.items;
+        }
+      });
+    }
   }
 
   @HostListener('mouseenter', ['$event'])
@@ -299,18 +254,19 @@ export class VideoPromptComponent {
   
     dialogRef.afterClosed().subscribe(updatedItem => {
       if (updatedItem) {
-        // Update the item with the edited values
         item.url = updatedItem.url;
         item.title = updatedItem.title;
         item.input = updatedItem.input;
-        // Optionally, you can save the updated item to your data source.
       }
     });
   }
 
-  redirectToParent() {
-    this.isTutor = !this.isTutor;
-    this.resetInputChild();
+  handleViewChange(isViewChanged: boolean) {
+    if(isViewChanged) {
+      this.isTutor = !this.isTutor;
+      this.handleResetInput(true);
+    }
   }
+
 }
 

@@ -1,0 +1,9 @@
+<button mat-fab style="background-color: #3399cc;" type="button" class="settings-button" (click)="openSettingsDialog()">
+  <mat-icon>settings</mat-icon>
+</button>
+<button mat-mini-fab *ngIf="!isTutorView" type="button" class="keyboard-backspace-button" (click)="triggerTutorView()">
+  <mat-icon class="keyboard-backspace-icon">keyboard_backspace</mat-icon>
+</button>
+<button mat-mini-fab *ngIf="isTutorView" type="button" (click)="launchSortGame()">
+  <mat-icon>videogame_asset</mat-icon>
+</button>
