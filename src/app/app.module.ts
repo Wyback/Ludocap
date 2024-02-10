@@ -19,6 +19,13 @@ import { SettingsComponent } from './components/video-list/settings/settings.com
 import { HeaderComponent } from './components/header/header.component';
 import { CarouselModule } from '@coreui/angular';
 import { DragDropModule } from '@angular/cdk/drag-drop';
+import { HouseGameComponent } from './components/house-game/house-game.component';
+import { HouseItemListComponent } from './components/house-game/house-item-list/house-item-list.component';
+import { HouseComponent } from './components/house-game/house/house.component';
+import { HouseItemComponent } from './components/house-game/house-item-list/house-item/house-item.component';
+import { SquareComponent } from './components/house-game/square/square.component';
+import { RoomComponent } from './components/house-game/room/room.component';
+
 @NgModule({
   declarations: [	
     AppComponent,
@@ -27,6 +34,12 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     PlayVideoComponent,
     SettingsComponent,
     HeaderComponent,
+    HouseGameComponent,
+    HouseItemListComponent,
+    HouseItemComponent,
+    HouseComponent,
+    SquareComponent,
+    RoomComponent
   ],
   imports: [
     CarouselModule,
@@ -42,7 +55,7 @@ import { DragDropModule } from '@angular/cdk/drag-drop';
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    DragDropModule
+    DragDropModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

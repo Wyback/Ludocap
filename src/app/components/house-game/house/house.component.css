@@ -1,0 +1,28 @@
+/* grid.component.css */
+
+.grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px;
+    border: 2px dashed #ccc;
+    min-height: 100px; /* Ensure a minimum height to make it droppable */
+  }
+  
+  .grid-cell {
+    flex: 0 0 calc(33.33% - 20px); /* 33.33% for 3 cells in a row with 10px gap */
+    box-sizing: border-box;
+    padding: 10px;
+    border: 1px solid #ddd;
+    background-color: #f5f5f5;
+    cursor: grab;
+  }
+  
+  .grid-cell.cdk-drag-preview {
+    box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.1);
+  }
+  
+  .grid-cell.cdk-drag-placeholder {
+    opacity: 0;
+  }
+  

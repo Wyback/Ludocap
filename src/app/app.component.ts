@@ -7,4 +7,9 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'ludocap';
+
+  onItemDropped(item: string) {
+    // Handle the dropped item if needed
+    console.log('Dropped item:', item);
+  }
 }

@@ -1,0 +1,6 @@
+<div class="house">
+    <h2>House</h2>
+    <div class="grid">
+        <div class="grid-cell" id="list-house" cdkDropListConnectedTo="list-item" cdkDropList draggable="false" (cdkDropListDropped)="onDropGrid($event)" *ngFor="let cell of gridCells">{{ cell }}</div>
+      </div>
+</div>

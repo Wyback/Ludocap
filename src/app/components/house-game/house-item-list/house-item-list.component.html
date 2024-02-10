@@ -1,0 +1,6 @@
+<div class="item-list">
+  <h2>Draggable List</h2>
+  <ul cdkDropList id="list-item" cdkDropListConnectedTo="list-house" (cdkDropListDropped)="onDrop($event)">
+    <li *ngFor="let item of items" cdkDrag>{{ item }}</li>
+  </ul>
+</div>
